@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hangman Game</title>
+
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+          <div class="container">
+                  <div id="cabecalho" style="text-align:center">
+                    
+                      <h1 class="titulo">Hangman Game</h1>
+                      <h4>Aprenda inglês jogando!</h4>
+                      <p>Não deixe os pratos cair!!</p>
+
+                      <div id="botoes" class="botoes">
+                            <button class="btn" id="iniciar-jogo">🎮START🎮</button>
+                            <button class="btn" id="regras">📜REGRAS📜</button>
+                      </div>
+                  </div>
+
+                  <div id="letras" style="text-align:center">
+                      <canvas id="forca" width="700" height="300"></canvas>
+                  </div>
+
+                  <div id="palavra-nova" style="text-align:center">
+                      <h2>Deseja inserir uma palavra nova no jogo?</h2>
+                      <input class="text-input" type="text" id="input-nova-palavra" placeholder="Escreva uma nova palavra">
+                      <button class="btn" id="nova-palavra">ADICIONAR PALAVRA</button> 
+                  </div>
+
+                  <footer class="footer" style="text-align:center">    
+                      <p>Criado por Nathalia Carvalho</p>
+                  </footer>
+                      
+                  <script type="text/javascript" src="canvas.js"></script>
+                  <script type="text/javascript" src="forca.js"></script>
+                  
+
+          </div>
+  </body>
+
+
+</html>
