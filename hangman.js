@@ -1,14 +1,12 @@
-// para inserir array com lista inicial de palavras, onde serão inseridas novas palavras pelo usuário
 let palavras = ["GAME", "NUMBER", "DOG", "CAT", "TABLE", "BANANA", "ORANGE"];
-
 let palavraSecreta = palavras[Math.floor(Math.random() * palavras.length)];
-console.log(palavraSecreta);
 
-//outras variáveis
 let quantidadeErros = 0;
 let acertos = 0;
 let tentativas = "";
 let letra = "";
+let letraspermitidas="ABCEDFGHIJKLMNOPQRSTUVXWYZ abcdefghijklmnopqrstuvxwyz"
+let letrasTecladas=[]
 
 desenhaPoste();
 desenhaBarraSuperior();
@@ -17,51 +15,53 @@ desenhaBoneco();
 
 
 //FUNCIONAMENTO DOS BOTÕES
-
 let botaoRegras = document.querySelector("#regras");
 botaoRegras.addEventListener("click", mostraRegras);
 
 let botaoJogar = document.querySelector("#iniciar-jogo");
-botaoJogar.addEventListener("click", desenhaTracos);
+botaoJogar.addEventListener("click", iniciaJogo);
 
 function mostraRegras() {
-    alert ('Descubra a palavra, ela está em inglês. Cada letra errada derruba um prato. Vamos começar?')
+    alert ('Descubra a palavra, ela está em inglês. Cada letra errada derruba um prato. Vamos começar?');
 }
 
-// REGEX - usado para verificar se apenas letras
+function iniciaJogo(){
+    desenhaTracos();
+    document.addEventListener("keyup", jogar);
+}
 
+function jogar(event) {
+    let l = event.key;
+    let letra = l.toUpperCase();
 
-//para pegar letras tecladas
-window.addEventListener("keydown", function(tecla) {
-    let letra = tecla.key;
-    console.log(letra);
+    if(letraspermitidas.includes(letra)) {
+        if(!letrasTecladas.includes(letra)){
+            if(palavraSecreta.includes(letra)) {
+                for(let i = 0; i<palavraSecreta.length; i++) {
+                    var apresenta=palavraSecreta[i]
+                    if(apresenta == letra) {
+                        pincel.fillStyle = "black";
+                        pincel.font = "45px Arial";
+                        pincel.fillText(apresenta, 155 + (70*i),175);
 
-        if(!tentativas.includes(letra.toUpperCase()) && palavraSecreta.includes(letra.toUpperCase())) {
-            
-            for(let i = 0; i<palavraSecreta.length; i++) {
-                var apresenta=palavraSecreta[i]
-                if(apresenta == letra.toUpperCase()) {
-                    pincel.fillStyle = "black";
-                    pincel.font = "45px Arial";
-                    pincel.fillText(apresenta, 155 + (70*i),175);
-                    
-                    acertos++;
+                        acertos++;
+                    }
                 }
-            }
-        } else {
-            tentativas = tentativas + letra;
-            pincel.fillStyle = "black";
-            pincel.font = "20px Arial";
-            pincel.fillText("Tentativas: " + tentativas.toUpperCase(), 20 ,280);
+            } else {
+                tentativas = tentativas + letra;
+                pincel.fillStyle = "black";
+                pincel.font = "20px Arial";
+                pincel.fillText("Tentativas: " + tentativas, 20 ,280);
 
-            quantidadeErros++;
+                quantidadeErros++;
+                letrasTecladas.push(letra)
 
-            desenhaBoneco(quantidadeErros);
+                desenhaBoneco(quantidadeErros);
         }
-    
-    verificaFimJogo();
-});
-
+        verificaFimJogo();
+        } else{alert ("Você já tentou esta letra")}
+    } else {alert ("Utilize apenas letras")}
+}
 
 function verificaFimJogo(){
     if(quantidadeErros >=6) {
@@ -70,16 +70,15 @@ function verificaFimJogo(){
         pincel.fillText("GAME OVER!", 170 ,70);
         pincel.fillText("A palavra era " + palavraSecreta, 200 ,100);
 
-        //falta instrução para parar de receber entrada do teclado
+        document.removeEventListener("keyup", jogar);
     };
 
     if(acertos == palavraSecreta.length) {
         pincel.fillStyle = "orangered";
         pincel.font = "30px Arial";
         pincel.fillText("YOU WIN!", 180 ,100);
-        
-        //falta instrução para parar de receber entrada do teclado
 
+        document.removeEventListener("keyup", jogar);
     };
 };
 
