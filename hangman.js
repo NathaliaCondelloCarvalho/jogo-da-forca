@@ -22,7 +22,7 @@ let botaoJogar = document.querySelector("#iniciar-jogo");
 botaoJogar.addEventListener("click", iniciaJogo);
 
 function mostraRegras() {
-    alert ('Descubra a palavra, ela está em inglês. Cada letra errada derruba um prato. Vamos começar?');
+    alert ('Descubra a palavra, ela está em inglês. Você pode errar até 6 letras. Vamos começar?');
 }
 
 function iniciaJogo(){
