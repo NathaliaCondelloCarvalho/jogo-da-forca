@@ -6,25 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Hangman Game</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./reset-css.css">
+    <link rel="stylesheet" href="./style.css">
+    
 
   </head>
   <body>
           <div class="container">
                   <div id="cabecalho" style="text-align:center">
-                    
-                      <h1 class="titulo">Hangman Game</h1>
+                      <h1 class="titulo">Spinning Plates</h1>
                       <h4>Aprenda inglês jogando!</h4>
-                      <p>Descubra a palavra!</p>
+                      <p>Não deixe os pratos cairem!!</p>
 
                       <div id="botoes" class="botoes">
                             <button class="btn" id="iniciar-jogo">🎮START🎮</button>
                             <button class="btn" id="regras">📜REGRAS📜</button>
                       </div>
                   </div>
-
+                  <div  id="cena" style="text-align:center">
+                    <div id="cenario" width="500" height="300"></div>
+                  </div>
+                  
                   <div id="letras" style="text-align:center">
-                      <canvas id="forca" width="700" height="300"></canvas>
+                    <canvas id="forca" width="700" height="300"></canvas>
                   </div>
 
                   <div id="palavra-nova" style="text-align:center">
@@ -38,7 +42,7 @@
                   </footer>
                       
                   <script type="text/javascript" src="canvas.js"></script>
-                  <script type="text/javascript" src="hangman.js"></script>
+                  <script type="text/javascript" src="script.js"></script>
                   <script type="text/javascript" src="nova-palavra.js"></script>
                   
 
